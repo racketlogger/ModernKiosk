@@ -1,0 +1,2 @@
+all:
+	web-ext build
