@@ -2,16 +2,17 @@
 	"manifest_version": 2,
 	"name": "Modern Kiosk",
 	"description": "Kiosk-like facility extension for Firefox browsers",
-	"version": "0.2",
+	"version": "0.5",
 	"permissions": ["menus", "tabs", "browserSettings"],
 	"background": {
 		"scripts": ["mk_bg.js"]
 	},
+	"icons": {
+		"48": "icons/mk.svg"
+	},
 	"browser_action": {
 		"default_icon": {
-			"16": "icons/page-16.png",
-			"32": "icons/page-32.png",
-			"64": "icons/page-64.png"
+			"32": "icons/mk.svg"
 		}
 	}
 }
