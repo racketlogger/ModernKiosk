@@ -4,7 +4,7 @@ Kiosk-like WebExtension for modern browers like Firefox, Chrome, Opera, etc.
 
 Steps to run:
 
- * install the extension
+ * install the extension. Available for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/modern-kiosk/)
  * see the [rounded-square icon](icons/ModernKiosk.svg) on the browser
  * browse to the URL that you want as the default kiosk URL
  * right-click on the icon and select "Set as the kiosk URL"
