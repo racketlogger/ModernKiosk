@@ -1,6 +1,6 @@
 # ModernKiosk
 
-Kiosk-like WebExtension for Firefox
+Kiosk-like WebExtension for modern browers like Firefox, Chrome, Opera, etc.
 
 Steps to run:
 

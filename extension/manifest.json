@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Modern Kiosk",
-	"description": "Kiosk-like facility extension for Firefox browsers",
+	"description": "Kiosk-like facility extension for modern browsers",
 	"version": "0.5",
 	"permissions": ["menus", "tabs", "browserSettings"],
 	"background": {
