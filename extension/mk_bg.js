@@ -1,5 +1,5 @@
-// var kiosk_url = "http://racketlogger.github.io/rain-on-nadals-parade/";
-var kiosk_url = "https://app.racketlogger.com/";
+// this is a default URL
+var kiosk_url = "https://www.google.com/";
 
 var kiosk_window = undefined;
 
