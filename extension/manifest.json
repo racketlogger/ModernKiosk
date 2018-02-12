@@ -3,7 +3,7 @@
 	"name": "Modern Kiosk",
 	"description": "Kiosk-like facility extension for modern browsers",
 	"version": "0.6",
-	"permissions": ["menus", "tabs", "browserSettings"],
+	"permissions": ["menus", "tabs", "browserSettings", "activeTab"],
 	"background": {
 		"scripts": ["mk_bg.js"]
 	},
@@ -11,8 +11,10 @@
 		"48": "icons/mk.svg"
 	},
 	"browser_action": {
+		"browser_style": true,
 		"default_icon": {
 			"32": "icons/mk.svg"
-		}
+		},
+		"default_popup": "popup/options.html"
 	}
 }
