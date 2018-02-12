@@ -12,4 +12,4 @@ Steps to run:
 
 To exit, quit the browser.
 
-We will add more functionality later to further prevent access to the OS.
+We will add more functionality later to further prevent access to the OS. See [the issues](https://github.com/racketlogger/ModernKiosk/issues)
