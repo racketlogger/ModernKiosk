@@ -1,5 +1,3 @@
-// this is a default URL
-var kiosk_url = "https://www.google.com/";
 
 var kiosk_window = undefined;
 
@@ -15,8 +13,9 @@ function closeAllWindows(wil) {
 }
 
 function startKiosk(url) {
+  console.log("Starting ModernKiosk with URL: " + url);
   browser.windows.create({
-    url: url || kiosk_url,
+    url: url,
     state: "fullscreen",
     type: "panel"
   }).then((winfo) => {
@@ -26,23 +25,48 @@ function startKiosk(url) {
   });
 }
 
+function browseKiosk(url) {
+  console.log("Browsing ModernKiosk with URL: " + url);
+  browser.windows.create({ url: url }).then();
+}
+
+
+function modernKioskURL() {
+  return browser.storage.local.get("kiosk_url").then(function(item) {
+    console.log('Items: ' + JSON.stringify(item))
+    return item.kiosk_url || "https://www.google.com/";
+  });
+  // browser.storage.local.get("kiosk_url", function(items) {
+  //   console.log('Items: ' + JSON.stringify(items))
+  //   return items.kiosk_url;
+  // }).then(function(res) {
+  //   return res || "https://www.google.com/";
+  // });
+}
+
 // context menu to enter Kiosk
 browser.menus.create({
-  id: 'mk',
+  id: 'mk-url',
+  title: "Set current URL as kiosk URL"
+});
+browser.menus.create({
+  id: 'mk-start',
   title: "Enter kiosk mode"
 });
 browser.menus.create({
-  id: 'mk-url',
-  title: "Set the kiosk URL"
+  id: 'mk-current-url',
+  title: "Browse current kiosk URL"
 });
 
 function modernKioskMenuSelect(info, tab) {
   console.log(info);
 
-  if (info.menuItemId == 'mk') {
-    startKiosk(kiosk_url);
+  if (info.menuItemId == 'mk-start') {
+    modernKioskURL().then(url => startKiosk(url));
+  } else if (info.menuItemId == 'mk-current-url') {
+    modernKioskURL().then(url => browseKiosk(url));
   } else if (info.menuItemId == 'mk-url' && /^http/.test(info.pageUrl)) {
-    kiosk_url = info.pageUrl;
+    browser.storage.local.set({ kiosk_url: info.pageUrl });
     console.log(info.pageUrl);
   }
 }
@@ -52,7 +76,7 @@ browser.menus.onClicked.addListener(modernKioskMenuSelect);
 browser.windows.onRemoved.addListener((wid) => {
   if (wid === kiosk_window) {
     console.log("Closed window: " + wid);
-    startKiosk(kiosk_url);
+    modernKioskURL().then(url => startKiosk(url));
   }
 });
 
@@ -60,7 +84,6 @@ browser.windows.onFocusChanged.addListener((wid) => {
   console.log("Focus changed on window: " + wid);
   console.log("MK window: " + kiosk_window);
   if (kiosk_window && (wid === kiosk_window || wid === browser.windows.WINDOW_ID_NONE)) {
-    //startKiosk(kiosk_url);
     browser.windows.update(
       kiosk_window, {
         focused: true,
