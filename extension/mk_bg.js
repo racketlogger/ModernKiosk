@@ -36,12 +36,6 @@ function modernKioskURL() {
     console.log('Items: ' + JSON.stringify(item))
     return item.kiosk_url || "https://www.google.com/";
   });
-  // browser.storage.local.get("kiosk_url", function(items) {
-  //   console.log('Items: ' + JSON.stringify(items))
-  //   return items.kiosk_url;
-  // }).then(function(res) {
-  //   return res || "https://www.google.com/";
-  // });
 }
 
 // context menu to enter Kiosk
