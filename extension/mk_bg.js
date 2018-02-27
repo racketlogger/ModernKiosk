@@ -38,7 +38,11 @@ function modernKioskURL() {
   });
 }
 
-// context menu to enter Kiosk
+// context menu to manage ModernKiosk
+browser.menus.create({
+  id: 'mk-preferences',
+  title: "ModernKiosk preferences"
+});
 browser.menus.create({
   id: 'mk-url',
   title: "Set current URL as kiosk URL"
@@ -47,17 +51,16 @@ browser.menus.create({
   id: 'mk-start',
   title: "Enter kiosk mode"
 });
-browser.menus.create({
-  id: 'mk-current-url',
-  title: "Browse current kiosk URL"
-});
 
 function modernKioskMenuSelect(info, tab) {
   console.log(info);
 
   if (info.menuItemId == 'mk-start') {
     modernKioskURL().then(url => startKiosk(url));
+  } else if (info.menuItemId == 'mk-preferences') {
+    browser.runtime.openOptionsPage().then();
   } else if (info.menuItemId == 'mk-current-url') {
+    // Deprecated -- left here for debugging
     modernKioskURL().then(url => browseKiosk(url));
   } else if (info.menuItemId == 'mk-url' && /^http/.test(info.pageUrl)) {
     browser.storage.local.set({ kiosk_url: info.pageUrl });
