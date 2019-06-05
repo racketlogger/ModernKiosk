@@ -1,8 +1,8 @@
 
-var kiosk_window = undefined;
+var kiosk_window;
 
 function closeAllWindows(wil) {
-  for (wi of wil) {
+  for (let wi of wil) {
     if (wi !== kiosk_window) {
       // console.log(`Closing window: ${wi.id}`);
       // console.log(wi.tabs.map((tab) => {return tab.url}));
@@ -33,8 +33,8 @@ function browseKiosk(url) {
 
 function modernKioskURL() {
   return browser.storage.local.get("kiosk_url").then(function(item) {
-    console.log('Items: ' + JSON.stringify(item))
-    return item.kiosk_url || "https://www.google.com/";
+    console.log('Items: ' + JSON.stringify(item));
+    return item.kiosk_url;
   });
 }
 
@@ -89,3 +89,22 @@ browser.windows.onFocusChanged.addListener((wid) => {
     );
   }
 });
+
+/**
+ * Set in storage.local the default config values when the add-on is installed
+ * Called when user install the add-on
+ * @function setDefaultConfig()
+ */
+function setDefaultConfig() {
+  browser.storage.local.set({
+    kiosk_url: "http://example.org/",
+    context_enable: true,
+    context_disable: false
+  });
+}
+
+/**
+ * Event fired when user install the add-on
+ */
+browser.runtime.onInstalled.addListener(setDefaultConfig);
+

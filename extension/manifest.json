@@ -2,11 +2,18 @@
 	"manifest_version": 2,
 	"name": "Modern Kiosk",
 	"description": "Kiosk-like facility extension for modern browsers",
+	"homepage_url": "https://github.com/racketlogger/ModernKiosk",
 	"version": "0.9",
-	"permissions": ["menus", "tabs", "browserSettings", "storage"],
+	"permissions": ["menus", "activeTab", "browserSettings", "storage"],
 	"background": {
 		"scripts": ["mk_bg.js"]
 	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content/nocontextmenu.js"]
+		}
+	],
 	"icons": {
 		"48": "icons/mk.svg"
 	},
