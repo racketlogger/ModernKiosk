@@ -1,6 +1,8 @@
 function saveOptions(e) {
   browser.storage.local.set({
-    kiosk_url: document.querySelector("#mk_url").value
+    kiosk_url: document.querySelector("#mk_url").value,
+    context_enable: document.querySelector("#context_menu_enabled").checked,
+    context_disable: document.querySelector("#context_menu_disabled").checked
   });
   e.preventDefault();
 }
@@ -11,9 +13,14 @@ function restoreOptions() {
   //   document.querySelector("#managed-colour").innerText = res.colour;
   // });
 
-  var gettingItem = browser.storage.local.get('kiosk_url');
+  var gettingItem = browser.storage.local.get();
   gettingItem.then((res) => {
-    document.querySelector("#mk_url").value = res.kiosk_url || 'https://www.google.com';
+    let getURL = document.querySelector("#mk_url");
+    let getContextEnable  = document.querySelector("#context_menu_enabled");
+    let getContextDisable = document.querySelector("#context_menu_disabled");
+    getURL.value = res.kiosk_url;
+    getContextEnable.checked  = res.context_enable;
+    getContextDisable.checked = res.context_disable;
   });
 }
 
