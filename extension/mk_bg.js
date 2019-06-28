@@ -99,12 +99,28 @@ function setDefaultConfig() {
   browser.storage.local.set({
     kiosk_url: "http://example.org/",
     context_enable: true,
-    context_disable: false
+    context_disable: false,
+    fullscreen_enable: false,
+    fullscreen_disable: true
   });
 }
+
+/**
+ * Enter in kiosk mode on startup if preference "fullscreen_enable"
+ * is set to true. Reference to object storage.local.get
+ * @function StorageArea.get()
+ * @param {Object} fullscreen_enable - retrive fullscreen_enable
+ * @returns {Promise} Promise containing object key fullscreen_enable
+ */
+let getOnStartupFullscreen = browser.storage.local.get("fullscreen_enable");
+getOnStartupFullscreen.then((item) => {
+  if (item.fullscreen_enable) {
+    modernKioskURL().then(url => startKiosk(url));
+    console.log("Full Screen mode on startup enabled");
+  }
+});
 
 /**
  * Event fired when user install the add-on
  */
 browser.runtime.onInstalled.addListener(setDefaultConfig);
-
