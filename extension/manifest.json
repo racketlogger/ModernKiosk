@@ -3,7 +3,7 @@
 	"name": "Modern Kiosk",
 	"description": "Kiosk-like facility extension for modern browsers",
 	"homepage_url": "https://github.com/racketlogger/ModernKiosk",
-	"version": "0.10",
+	"version": "0.11",
 	"permissions": ["menus", "activeTab", "browserSettings", "storage"],
 	"background": {
 		"scripts": ["mk_bg.js"]
