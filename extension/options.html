@@ -4,53 +4,255 @@
   <head>
     <meta charset="utf-8">
   </head>
+  <style>
 
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+/* Style to change icons on input type URL */
+  input[type=url] {
+    border-color: rgba(12, 12, 13, 0.2);
+    padding-right: 30px;
+    width: 80%;
+    background-image: url('icons/Globe.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+  }
+
+  input[type=url]:hover {
+    border-color: rgba(12, 12, 13, 0.3);
+    padding-right: 30px;
+    width: 80%;
+    background-image: url('icons/Globe.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+  }
+
+  input[type=url]:focus {
+    border-color: #0a84ff;
+    box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+    padding-right: 30px;
+    width: 80%;
+    background-image: url('icons/Cancel.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+  }
+
+  input[type=url]:invalid {
+    border-color: #d70022;
+    box-shadow: 0 0 0 1px #d70022, 0 0 0 4px rgba(251, 0, 34, 0.3);
+    padding-right: 30px;
+    width: 80%;
+    background-image: url('icons/Globe.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+  }
+
+/* Style to change icons on input type password */
+  #mk_password, #confirm_password {
+    border-color: rgba(12, 12, 13, 0.2);
+    padding-right: 30px;
+    width: 50%;
+    background-image: url('icons/Hide.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+    font-family: "Courier New", "Lucida Console";
+  }
+
+  #mk_password:hover, #confirm_password:hover {
+    border-color: rgba(12, 12, 13, 0.3);
+    padding-right: 30px;
+    width: 50%;
+    background-image: url('icons/Hide.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+    font-family: "Courier New", "Lucida Console";
+  }
+
+  #mk_password:focus, #confirm_password:focus {
+    border-color: #0a84ff;
+    box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+    padding-right: 30px;
+    width: 50%;
+    background-image: url('icons/Hide.svg');
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: right center;
+    font-family: "Courier New", "Lucida Console";
+  }
+
+/* Taken from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd */
+kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+    }
+
+.alert {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/* If necessary some simple icons
+ * How to use: <span class="icon icon-warn"></span>
+ */
+.icon {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(12, 12, 13, .8);
+    }
+
+/* Hexadecimal UTF-8 icons */
+.icon-note:after { content: "\2633"; }
+.icon-warn:after { content: "\26a0"; }
+.icon-info:after { content: "\24d8"; }
+
+/* Photon icons */
+.icon-preferences {
+    background-position: 0 0;
+    width: 16px; height: 16px;
+    background: url('icons/Preferences.svg') no-repeat top left;
+    }
+
+  </style>
 <body>
-  <section>
-      <label>ModernKiosk URL</label>
-      <br>
-      <br>
-      <input type="text" id="mk_url" style="width: 80%">
-      <br>
-      <br>
-      <label>Enable context menu?</label>
-      <br>
-      <br>
-      <input type="radio" id="context_menu_enabled" name="context_menu">
-      <label for="context_menu_enabled">Enable</label>
-      <input type="radio" id="context_menu_disabled"
-      name="context_menu">
-      <label for="context_menu_disabled">Disable</label>
-      <br>
-      <small>WARNING: If you choose to disable the context menu this will affect all your browser.</small>
-      <br>
-      <small>HEADS-UP! Please reload your page or strike F5 to make the changes take place.</small>
-      <br>
-      <small>The first time you install the add-on the context menu will be enabled by default.</small>
-      <br>
-      <br>
-      <label>Start Firefox in Kiosk Mode?</label>
-      <br>
-      <br>
-      <input type="radio" id="fullscreen_enabled" name="start_kiosk_mode">
-      <label for="fullscreen_enabled">Enable</label>
-      <input type="radio" id="fullscreen_disabled"
-      name="start_kiosk_mode">
-      <label for="fullscreen_disabled">Disable</label>
-      <br>
-      <small>WARNING: If you choose to enable Firefox startup in Kiosk mode, this will affect the first start of your browser.</small>
-      <br>
-      <small>HEADS-UP! Please close Firefox and start again to make the changes take place.</small>
-      <br>
-      <small>The first time you install this add-on this preference is set to "disable" by default.</small>
-  </section>
-
-  <section>
+<form>
+  <div class="browser-style">
+    <header class="panel-section panel-section-header">
+    <div class="icon-section-header"><img src="icons/Preferences.svg"/></div>
+    <div class="text-section-header">General Preferences</div>
+    </header>
+    <br>
+    <br>
+    <label for="mk_url">ModernKiosk URL</label>
+    <br>
+    <input type="url" name="mk_url" id="mk_url"
+    placeholder="http://example.com" pattern="http.*" size="30" required>
+    <br>
+    <small>(Enter an http:// or https:// URL)</small>
+    <br>
+    <br>
+    <label>Enable context menu?</label>
+    <br>
+    <br>
+    <input type="radio" id="context_menu_enabled" name="context_menu">
+    <label for="context_menu_enabled">Enable</label>
+    <input type="radio" id="context_menu_disabled"
+    name="context_menu">
+    <label for="context_menu_disabled">Disable</label>
+    <br>
+    <small>WARNING: If you choose to disable the context menu this will affect all your browser.</small>
+    <br>
+    <small>HEADS-UP! Please reload your page or strike <kbd>F5</kbd> to make the changes take place. The first time you install the add-on the context menu will be enabled by default.</small>
+    <br>
+    <br>
+    <label>Start Firefox in Kiosk Mode?</label>
+    <br>
+    <br>
+    <input type="radio" id="fullscreen_enabled" name="start_kiosk_mode">
+    <label for="fullscreen_enabled">Enable</label>
+    <input type="radio" id="fullscreen_disabled"
+    name="start_kiosk_mode">
+    <label for="fullscreen_disabled">Disable</label>
+    <br>
+    <small>WARNING: If you choose to enable Firefox startup in Kiosk mode, this will affect the first start of your browser.</small>
+    <br>
+    <small>HEADS-UP! Please close Firefox and start again to make the changes take place. The first time you install this add-on this preference is set to "disable" by default.</small>
+    <br>
+    <br>
+    <header class="panel-section panel-section-header">
+    <div class="icon-section-header"><img src="icons/TopSites.svg"/></div>
+    <div class="text-section-header">Exit Key Combination</div>
+    </header>
+    <br>
+    <p>To exit from the Kiosk mode strike <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd> for Windows and Linux. For MAC press <kbd>⌘ Command</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd>.
+       Optionally you can set an optional password. This could be very useful if you find a way (with third party software)
+      to prevent user access to the device's operating system.
+    </p>
+    <br>
+    <label>Enable optional password?</label>
+    <input type="radio" id="password_enabled" name="password">
+    <label for="password_enabled">Enable</label>
+    <input type="radio" id="password_disabled" name="password">
+    <label for="password_disabled">Disable</label>
+    <br>
+    <small>NOTE: Please enable Start Firefox in Kiosk Mode first. This is for security purposes, so that users do not have access to be able to 
+    modify the password.
+    </small>
+  </div>
   <br>
-  <button type="submit" id="save">Save</button>
-  </section>
+  <br>
 
-  <script src="options.js"></script>
+  <button type="submit" id="save" class="browser-style default">Save General Preferences</button>
+
+</form>
+
+<form>
+  <div class="browser-style hide-password">
+    <div class="browser-style">
+      <br>
+      <header class="panel-section panel-section-header">
+      <div class="icon-section-header"><img src="icons/Secure.svg"/></div>
+      <div class="text-section-header">Optional Password</div>
+      </header>
+    </div>
+    <div id="password_not_exist" class="alert browser-style" role="alert">
+    It seems that you have not set a password yet. Please set one?
+    </div>
+    <div id="password_exist" class="alert browser-style" role="alert">
+    You already have a password, do you want to change the existing one?
+    </div>
+    <br>
+    <label for="mk_password">Password</label>
+    <br>
+    <input type="password" id="mk_password" placeholder="Password">
+    <br>
+    <br>
+    <label for="confirm_password">Confirm password</label>
+    <br>
+    <input type="password" id="confirm_password" placeholder="Confirm password">
+    <br>
+    <small>INSECURE PASSWORD WARNING IN FIREFOX: If your APP is not in https (Hypertext Transfer Protocol Secure) then Firefox show this warning.
+    If you have this problem you can solve this in "about:config" turning to "false" the preference 
+    "security.insecure_field_warning.contextual.enabled." As well, you can change "signon.autofillForms.http" preference to disable autofill.
+    Although, we encourage to users to use your APP in https rather than http protocol.
+    </small>
+    <br>
+    <!-- <small>WARNING: Please do not lose your password since this version does not have a way to recover a password (Work in progress)...</small> -->
+  <br>
+  <br>
+  <button type="submit" id="save_password" class="browser-style default">Save Password and General Preferences</button>
+  </div>
+</form>
+
+<script src="mk_utils.js"></script>
+<script src="options.js"></script>
+
 </body>
 
 </html>
