@@ -82,6 +82,7 @@ async function handleData(request) {
             return;
           }
           switch (e.code) {
+           case "Enter":
            case "NumpadEnter":
              modalLauncher("hide");
              Submit(resolve, reject);
